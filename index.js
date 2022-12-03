@@ -4,12 +4,15 @@ const usuarioRoutes = require("./routes/usuarioRoutes");
 const auth =require("./routes/auth");
 const categoriasRoutes =require ("./routes/categoriasRoutes");
 const productosRoutes =require ("./routes/productosRoutes");
+const cors = require("cors");
 
 const app = express();
 
 app.use(express.json({extended: true}));
 
 conectarDB();
+
+app.use(cors());
 
 //rutas
 app.use("/api/usuarios", usuarioRoutes);

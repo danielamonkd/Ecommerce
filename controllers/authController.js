@@ -18,7 +18,7 @@ exports.autenticarUsuario = async(req, res) => {
         }
         //revisar el password- el node js es secuencial 
         const passwordCorrecto = await bcryptjs.compare(password, usuario.password);
-        if (!password){
+        if (!passwordCorrecto){
             return res. status(400).json({msg: "contraseña incorrecta"});
         }
         
