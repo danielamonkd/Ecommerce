@@ -1,16 +1,10 @@
 const Productos = require("../models/Productos");
-const Categorias =require("../models/Categorias");
+const Categorias = require("../models/Categorias");
 
 exports.obtenerProducto = async (req, res) => {
-    
-    try{
-        const producto = await Productos.find({categoriaId: req.params.id});
-
-        res.json({ producto});
-    }catch(error){
-        console.log(error);
-    }
-    
+    const {id} = req.params
+    const producto =await Productos.find().where("categoriaId").equals(id);
+    res.json(producto);
 
 };
 

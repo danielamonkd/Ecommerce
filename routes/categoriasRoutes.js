@@ -5,6 +5,7 @@ const categoriasController = require("../controllers/categoriasController");
 
 
 router.get("/", authMidd, categoriasController.obtenerCategoria);
+router.get("/:id", authMidd, categoriasController.obtenerCategoriaId);
 router.post("/", authMidd, categoriasController.crearCategoria);
 router.put("/:id", authMidd, categoriasController.actualizarCategoria);
 router.delete("/:id", authMidd, categoriasController.borrarCategoria);

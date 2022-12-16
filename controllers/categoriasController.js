@@ -1,5 +1,28 @@
 const Categorias =require("../models/Categorias");
 
+exports.obtenerCategoriaHome = async (req, res) => {
+    try{
+        const categoria = await Categorias.find({creador: req.usuario});
+
+        res.json({ categoria});
+    }catch(error){
+        console.log(error);
+    }
+
+};
+
+exports.obtenerCategoriaId = async (req,res) => {
+    const {id} = req.params
+    try{
+        const categoria = await Categorias.findById(id);
+        res.json({ categoria});
+
+    }catch(error){
+        console.log(error);
+
+    }
+};
+
 
 exports.obtenerCategoria = async (req, res) => {
     try{
@@ -41,6 +64,7 @@ exports.actualizarCategoria = async (req, res) => {
     }
 
 categoria.nombre = req.body.nombre || categoria.nombre;
+categoria.imagen = req.body.imagen || categoria.imagen;
 
 categoria.save();
 
