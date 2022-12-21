@@ -2,7 +2,7 @@ const Categorias =require("../models/Categorias");
 
 exports.obtenerCategoriaHome = async (req, res) => {
     try{
-        const categoria = await Categorias.find({creador: req.usuario});
+        const categoria = await Categorias.find();
 
         res.json({ categoria});
     }catch(error){
@@ -24,7 +24,7 @@ exports.obtenerCategoriaId = async (req,res) => {
 };
 
 
-exports.obtenerCategoria = async (req, res) => {
+exports.getCategory= async (req, res) => {
     try{
         const categoria = await Categorias.find({creador: req.usuario.id});
 

@@ -7,7 +7,7 @@ const ProductosSchema = mongoose.Schema ({
     precio: {type: Number, required:true , trim: true },
     imagen: { type: String, required: true , trim: true },
     creado:{ type: Date, default: Date.now()},
-    categoriaId:{ type: mongoose.Schema.Types.ObjectId, ref: "Categorias"}
+    categoriaId:{ type: mongoose.Types.ObjectId, ref: "Categorias"}
 });
 
 //definir el modelo

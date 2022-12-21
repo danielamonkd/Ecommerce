@@ -1,12 +1,26 @@
 const Productos = require("../models/Productos");
 const Categorias = require("../models/Categorias");
 
+exports.obtenerProductosHome = async (req, res) => {
+    try{
+        const productos = await Productos.find();
+
+        res.json({ productos});
+    }catch(error){
+        console.log(error);
+    }
+
+};
+
 exports.obtenerProducto = async (req, res) => {
     const {id} = req.params
     const producto =await Productos.find().where("categoriaId").equals(id);
     res.json(producto);
 
 };
+
+
+
 
 exports.crearProducto = async (req, res) => {
     
@@ -29,6 +43,7 @@ exports.crearProducto = async (req, res) => {
 };
 
 exports.actualizarProducto = async (req, res) => {
+
     const { id } = req.params;
     const producto= await Productos.findById(id);
     
@@ -44,13 +59,14 @@ producto.nombre = req.body.nombre || producto.nombre;
 producto.descripcion = req.body.descripcion || producto.descripcion;
 producto.stock = req.body.stock || producto.stock;
 producto.precio = req.body.precio || producto.precio;
-producto.categoriaId = req.categoria || producto.categoriaId;
+producto.categoriaId = req.params.categoriaId || producto.categoriaId;
 
 producto.save();
 
 res.json({producto});
 
 };
+
 
 exports.borrarProducto = async (req, res) => {
     try{
